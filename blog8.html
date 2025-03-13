@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3>🏠 Home</h3></a>
+        <h2>Product Details</h2>
+        <a href="cart.html">🛒 Cart</a>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/kid dress.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Floral dress for girls</h1>
+                <p class="price">₹1399</p>
+                <p class="description">Lightweight, breathable, and slightly textured with soft floral prints.Puffy short sleeves, a square neckline, and a flowy skirt for an elegant touch.</p>
+                <button class="add-to-cart" data-name="Floral dress for girls" data-price="1399">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/kid dress2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Pink Puff-Sleeve Dress</h1>
+                <p class="price">₹899</p>
+                <p class="description">A soft pink dress with puffed sleeves, a ruffled hem, and button details. Made from breathable cotton, perfect for casual outings or special occasions.</p>
+                <button class="add-to-cart" data-name="Pink Puff-Sleeve Dress" data-price="899">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/kid dress3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Pink Polka Dot Dress</h1>
+                <p class="price">₹999</p>
+                <p class="description">A stylish pink dress with black polka dots, puffed sleeves, and a gathered skirt. Ideal for parties and everyday wear.</p>
+                <button class="add-to-cart" data-name="Pink Polka Dot Dress" data-price="999">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/kid dress4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Set of Three Puff-Sleeve Button Dresses</h1>
+                <p class="price">₹799</p>
+                <p class="description">A collection of three cotton dresses with puffed sleeves and front button details. Available in pastel shades, perfect for summer wear.</p>
+                <button class="add-to-cart" data-name="Set of Three Puff-Sleeve Button Dresses" data-price="799">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/kid dress5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1> Summer Watermelon T-shirt & Shorts Set</h1>
+                <p class="price">₹1199</p>
+                <p class="description"> A white T-shirt featuring a cute watermelon print and the word "Summer," paired with soft pink high-waisted shorts. A trendy and comfy outfit for kids.</p>
+                <button class="add-to-cart" data-name=" Summer Watermelon T-shirt & Shorts Set" data-price="1199">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/kid dress6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Yellow Shorts & Floral T-Shirt Set</h1>
+                <p class="price">₹1299</p>
+                <p class="description">A stylish white T-shirt with ruffled sleeves, featuring a floral print with the quote "The sun is shining brightly." Paired with mustard yellow high-waisted shorts with a bow belt, this set is perfect for summer outings.</p>
+                <button class="add-to-cart" data-name="Yellow Shorts & Floral T-Shirt Set" data-price="1299">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

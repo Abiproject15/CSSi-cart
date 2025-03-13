@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="shopnow.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3> <img src="Assests/CS².ico" alt="nav__logo"></h3></a>
+        <div class="nav-links">
+            <a href="cart.html">🛒 Cart</a>
+            <a href="wishlist.html">❤️<span id="wishlist-count">0</span></a>
+        </div>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Handwoven Ethnic Saree Combo (Set of 2)" data-image="Assests/saree combo.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree combo.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Handwoven Ethnic Saree Combo (Set of 2)</h1>
+                <p class="price">₹2,999</p>
+                <p class="description">Elevate your wardrobe with this stunning Handwoven Ethnic Saree Combo, featuring four exquisitely designed sarees that blend tradition with contemporary elegance. </p>
+                <button class="add-to-cart" data-name="Handwoven Ethnic Saree Combo (Set of 2)" data-price="2999">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Casual Wide-Leg Sweatpants" data-image="Assests/shop now.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/shop now.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Casual Wide-Leg Sweatpants</h1>
+                <p class="price">₹899</p>
+                <p class="description">Stay comfortable and stylish with these casual wide-leg sweatpants, perfect for everyday wear. Made from soft, breathable fabric, these pants offer a relaxed fit with an elastic waistband and adjustable drawstring for a customizable fit.</p>
+                <button class="add-to-cart" data-name="Casual Wide-Leg Sweatpants" data-price="899">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Ruched Side Tie Crop Top (Set of 3)" data-image="Assests/shop now4.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/shop now4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Ruched Side Tie Crop Top (Set of 3)</h1>
+                <p class="price">₹999</p>
+                <p class="description">Designed for a chic and trendy look, these tops feature adjustable drawstring ruching on the sides, allowing you to customize the fit. Made from a soft, breathable cotton blend, they offer all-day comfort and versatility.</p>
+                <button class="add-to-cart" data-name="Ruched Side Tie Crop Top (Set of 3)" data-price="999">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Trendy Casual Streetwear Outfit (4-Piece Set)" data-image="Assests/shop now5.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/shop now5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Trendy Casual Streetwear Outfit (4-Piece Set)</h1>
+                <p class="price">₹1,499 </p>
+                <p class="description">Featuring a light-wash denim jacket, a classic white hoodie, black high-waisted trousers, and black canvas sneakers, this outfit is perfect for an urban-chic aesthetic.</p>
+                <button class="add-to-cart" data-name="Trendy Casual Streetwear Outfit (4-Piece Set)" data-price="1,499 ">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="High-Waisted Grey Mom Jeans" data-image="Assests/shop now3.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/shop now3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>High-Waisted Grey Mom Jeans</h1>
+                <p class="price">₹1,299 </p>
+                <p class="description">Stylish and comfortable high-waisted grey mom jeans with a relaxed fit, perfect for casual wear. Pairs well with crop tops, sweatshirts, or oversized tees for a trendy street-style look.</p>
+                <button class="add-to-cart" data-name="High-Waisted Grey Mom Jeans" data-price="1,299 ">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Red Indo-Western Printed Kurti" data-image="Assests/shop now6.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/shop now6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Red Indo-Western Printed Kurti</h1>
+                <p class="price">₹799</p>
+                <p class="description"> A stylish sleeveless red printed kurti with an elegant Indo-Western touch. Perfect for casual outings, work, or festive occasions. Pair it with jeans or leggings for a trendy look.</p>
+                <button class="add-to-cart" data-name="Red Indo-Western Printed Kurti" data-price="799">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        // Add to Wishlist Functionality
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let image = this.getAttribute('data-image');
+                let wishlist = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+
+                // Check if product is already in wishlist
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, image });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    alert("Product Added to Wishlist!");
+                } else {
+                    alert("Product is already in Wishlist!");
+                }
+
+                updateWishlistCount();
+            });
+        });
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+
+        document.addEventListener("DOMContentLoaded", updateWishlistCount);
+    </script>
+
+
+
+
+
+
+
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

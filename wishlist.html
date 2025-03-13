@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+    <link rel="stylesheet" href="wishlist.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🏠 Home</a>
+        <ul class="nav-links">
+            <li class="wishlist-icon">
+                <a href="wishlist.html">❤️ Wishlist <span id="wishlist-count">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Wishlist Section -->
+    <section class="wishlist-container">
+        <h1>My Wishlist</h1>
+        <ul id="wishlist-items">
+            <!-- Wishlist items will be inserted here -->
+        </ul>
+        <button class="clear-wishlist" onclick="clearWishlist()">Clear Wishlist</button>
+    </section>
+
+
+
+    <script>
+        function showWishlist() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            let wishlistContainer = document.getElementById("wishlist-items");
+    
+            if (wishlist.length === 0) {
+                wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+            } else {
+                wishlistContainer.innerHTML = wishlist.map((item, index) => `
+                    <li class="wishlist-item">
+                        <img src="${item.image}" alt="${item.name}" class="wishlist-image">
+                        <span>${item.name}</span>
+                        <button class="remove-btn" onclick="removeFromWishlist(${index})">❌ Remove</button>
+                    </li>
+                `).join("");
+            }
+    
+            updateWishlistCount();
+        }
+    
+        function removeFromWishlist(index) {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            wishlist.splice(index, 1);
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+            showWishlist();
+        }
+    
+        function clearWishlist() {
+            localStorage.removeItem("wishlist");
+            showWishlist();
+        }
+    
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+    
+        document.addEventListener("DOMContentLoaded", () => {
+            showWishlist();
+        });
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

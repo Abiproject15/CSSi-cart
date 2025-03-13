@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3> <img src="Assests/CS².ico" alt="nav__logo"></h3></a>
+        <div class="nav-links">
+            <a href="cart.html">🛒 Cart</a>
+            <a href="wishlist.html">❤️<span id="wishlist-count">0</span></a>
+        </div>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Pink High-Waisted Paperbag Pants with White Tee" data-image="Assests/insta trend.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/insta trend.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Pink High-Waisted Paperbag Pants with White Tee</h1>
+                <p class="price">₹999</p>
+                <p class="description">A chic and trendy casual outfit featuring high-waisted pink paperbag pants with a matching belt, paired with a simple white t-shirt. Styled with black high-top sneakers and sunglasses for a fashionable streetwear look.</p>
+                <button class="add-to-cart" data-name="Pink High-Waisted Paperbag Pants with White Tee" data-price="999">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Olive Green High-Waisted Paperbag Pants with White Tee" data-image="Assests/insta trend2.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/insta trend2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Olive Green High-Waisted Paperbag Pants with White Tee</h1>
+                <p class="price">₹999</p>
+                <p class="description">Stylish high-waisted olive green paperbag pants with a matching fabric belt, paired with a classic white t-shirt. Perfect for a casual yet sophisticated look. Styled with white sneakers for added comfort and elegance.</p>
+                <button class="add-to-cart" data-name="Olive Green High-Waisted Paperbag Pants with White Tee" data-price="999">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Elegant Floral Midi Skirt with Burgundy Top" data-image="Assests/insta trend3.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/insta trend3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Elegant Floral Midi Skirt with Burgundy Top</h1>
+                <p class="price">₹1299</p>
+                <p class="description">A sophisticated outfit featuring a burgundy fitted top with three-quarter sleeves, paired with a flowy floral-printed midi skirt in white and maroon tones. Perfect for a classy and feminine look.</p>
+                <button class="add-to-cart" data-name="Elegant Floral Midi Skirt with Burgundy Top"data-price="1299">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Chic White Dress with Denim Shirt" data-image="Assests/insta trend4.1.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/insta trend4.1.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Chic White Dress with Denim Shirt</h1>
+                <p class="price">₹899</p>
+                <p class="description">A minimal yet stylish outfit featuring a flowy white midi dress paired with an oversized denim shirt for a casual, effortless look. Accessorized with a brown crossbody bag and white strappy sandals, perfect for a relaxed yet trendy vibe.</p>
+                <button class="add-to-cart" data-name="Chic White Dress with Denim Shirt" data-price="899">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Minimalist Beige Pinafore Dress" data-image="Assests/insta trend5.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/insta trend5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Minimalist Beige Pinafore Dress</h1>
+                <p class="price">₹990</p>
+                <p class="description">A simple yet elegant beige pinafore dress layered over a black short-sleeve tee for a modern, casual look. Paired with white open-toe sandals, this outfit is perfect for a chic, effortless aesthetic.</p>
+                <button class="add-to-cart" data-name="Minimalist Beige Pinafore Dress" data-price="990">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Chic Beige Peplum Top with Puffy Sleeves" data-image="Assests/insta trend6.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/insta trend6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Chic Beige Peplum Top with Puffy Sleeves</h1>
+                <p class="price">₹1,099</p>
+                <p class="description">This elegant beige top features a square neckline, voluminous balloon sleeves, and a flattering peplum silhouette. Perfect for a stylish and classy look, it's best paired with high-waisted trousers or denim for a balanced outfit.</p>
+                <button class="add-to-cart" data-name="Chic Beige Peplum Top with Puffy Sleeves" data-price="1,099">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        // Add to Wishlist Functionality
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let image = this.getAttribute('data-image');
+                let wishlist = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+
+                // Check if product is already in wishlist
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, image });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    alert("Product Added to Wishlist!");
+                } else {
+                    alert("Product is already in Wishlist!");
+                }
+
+                updateWishlistCount();
+            });
+        });
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+
+        document.addEventListener("DOMContentLoaded", updateWishlistCount);
+    </script>
+
+
+
+
+
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

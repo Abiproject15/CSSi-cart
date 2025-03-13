@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #e5c641; /* Purple background */
+    color: #fff;
+}
+
+.contact-section {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: #000000; /* Black container */
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    color: #000000; /* Black */
+    font-size: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+p {
+    font-size: 18px;
+}
+
+.content-box {
+    margin: 20px 0;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 6px solid #000000; /* Black Left Border */
+    border-radius: 12px;
+    transition: background 0.3s ease-in-out;
+}
+
+.content-box:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+    color: #000000; /* Black */
+    font-size: 26px;
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+
+
+
+.support-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.support-form input,
+.support-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+
+.support-form textarea {
+    height: 120px;
+}
+
+.support-form .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e5c641; /* Purple button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.support-form .btn:hover {
+    background-color: #4c1c91; /* Darker shade for hover effect */
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3>🏠 Home</h3></a>
+        <h2>Product Details</h2>
+        <a href="cart.html">🛒 Cart</a>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/slipper.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Royalcat Comfort Softride Slide</h1>
+                <p class="price">₹649</p>
+                <p class="color">Icy Blue-White-Blissful Blue</p>
+                <p class="description">A comfy softride slide perfect for all seasons.</p>
+                <button class="add-to-cart" data-name="Royalcat Comfort Softride Slide" data-price="649">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/slipper1.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Chunky Heeled Sandals</h1>
+                <p class="price">₹392</p>
+                <p class="color">White with Silver Buckle</p>
+                <p class="description">A white with two thin, silver, sparkly straps across the top of the foot.</p>
+                <button class="add-to-cart" data-name="Chunky Heeled Sandals" data-price="392">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/slipper2.1.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Open-Toe Chunky-Heeled Sandals</h1>
+                <p class="price">₹450</p>
+                <p class="color">Beige</p>
+                <p class="description">A Cushioned footbed Textured and patterend outsole, has a block heel.</p>
+                <button class="add-to-cart" data-name="Open-Toe Chunky-Heeled Sandals" data-price="450">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/slipper4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Flats Sandal</h1>
+                <p class="price">₹599</p>
+                <p class="color">Bombay Brown</p>
+                <p class="description">A high-quality,perfect for all seasons.</p>
+                <button class="add-to-cart" data-name="Flats Sandal" data-price="599">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/slipper5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Embroidered Slip-Ons</h1>
+                <p class="price">₹499</p>
+                <p class="description">A collection of stunning handcrafted slip-on flats featuring intricate embroidery in floral and bird motifs.</p>
+                <button class="add-to-cart" data-name="Embroidered Slip-Ons" data-price="499">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/slipper6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Elegant Beaded Toe-Ring Flats</h1>
+                <p class="price">₹349</p>
+                <p class="description">A luxurious pair of black flats adorned with intricate gold and silver beadwork in a geometric pattern.</p>
+                <button class="add-to-cart" data-name="Elegant Beaded Toe-Ring Flats" data-price="349">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

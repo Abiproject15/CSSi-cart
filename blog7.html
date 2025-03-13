@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3>🏠 Home</h3></a>
+        <h2>Product Details</h2>
+        <a href="cart.html">🛒 Cart</a>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/shoe.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Canvas Slip-On Mule Sneakers</h1>
+                <p class="price">₹399</p>
+                <p class="description">These are casual slip-on mule sneakers in a neutral beige color, featuring a lace-up design for a stylish yet effortless look.</p>
+                <button class="add-to-cart" data-name="Canvas Slip-On Mule Sneakers" data-price="399">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/shoe2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Canvas Platform Mule Sneakers</h1>
+                <p class="price">₹899</p>
+                <p class="description">This is a pair of canvas mule sneakers with a black upper and white sole, featuring lace-up detailing. These shoes offer a casual yet stylish look, perfect for everyday wear. </p>
+                <button class="add-to-cart" data-name="Canvas Platform Mule Sneakers" data-price="899">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/shoe3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Chunky Platform Sneakers</h1>
+                <p class="price">₹900</p>
+                <p class="description">The shoes feature a lace-up closure,perforated toe box for breathability,and a thick sole for added comfort and height.The text details on the side give them a unique streetwear-inspired look.</p>
+                <button class="add-to-cart" data-name="Chunky Platform Sneakers" data-price="900">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/shoe4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Chunky Sneakers</h1>
+                <p class="price">₹1299</p>
+                <p class="description">The design features multiple suede and leather overlays, a thick cushioned sole for comfort, and a lace-up closure for a secure fit. The neutral brown tones give them a versatile and trendy aesthetic.</p>
+                <button class="add-to-cart" data-name="Chunky Sneakers" data-price="1299">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/shoe5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Beige Canvas Platform Sneakers </h1>
+                <p class="price">₹879</p>
+                <p class="description">These are beige canvas platform sneakers with a minimalist and casual design. The shoes feature a thick white rubber sole, white laces, and stitched details for a stylish yet simple look.</p>
+                <button class="add-to-cart" data-name="Beige Canvas Platform Sneakers " data-price="879">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/shoe6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Panda Cute High-Top Sneakers</h1>
+                <p class="price">₹999</p>
+                <p class="description">These are Panda-Themed High-Top Sneakers with a cute and stylish black, white, and gray design.</p>
+                <button class="add-to-cart" data-name="Panda Cute High-Top Sneakers" data-price="999">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3>🏠 Home</h3></a>
+        <h2>Product Details</h2>
+        <a href="cart.html">🛒 Cart</a>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/cosmetics1.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>SHEGLAM Hydrating Lip Oil</h1>
+                <p class="price">₹499</p>
+                <p class="description">A nourishing and lightweight lip oil that provides a glossy, non-sticky finish. Infused with hydrating ingredients, it keeps lips soft and smooth while adding a subtle tint.</p>
+                <button class="add-to-cart" data-name="SHEGLAM Hydrating Lip Oil" data-price="499">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/cosmetics2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Maybelline Lash Sensational Mascara</h1>
+                <p class="price">₹549</p>
+                <p class="description">A volumizing mascara that gives a full fan effect with its unique curved brush. It separates and lifts lashes for a dramatic, long-lasting look. Smudge-proof and waterproof options available.</p>
+                <button class="add-to-cart" data-name="Maybelline Lash Sensational Mascara" data-price="549">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/cosmetics3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Summer Fridays Lip Butter Balm Collection</h1>
+                <p class="price">₹1299</p>
+                <p class="description">Infused with nourishing ingredients like shea butter and natural oils to keep lips soft, smooth, and glossy. Ideal for everyday hydration with a touch of color.</p>
+                <button class="add-to-cart" data-name="Summer Fridays Lip Butter Balm Collection" data-price="1299">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/cosmetics4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Flyliner Longwear Liquid Eyeliner</h1>
+                <p class="price">₹1380</p>
+                <p class="description"> A highly pigmented, waterproof liquid eyeliner with an ultra-fine tip for precise, smooth application. Designed for long-lasting wear without smudging or fading. Perfect for creating bold or subtle eye looks.</p>
+                <button class="add-to-cart" data-name="Flyliner Longwear Liquid Eyeliner" data-price="1380">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/cosmetics5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Soft Matte Longwear Foundation</h1>
+                <p class="price">₹459</p>
+                <p class="description">A lightweight, oil-free foundation with a soft matte finish. Provides medium to full coverage while resisting sweat and humidity. Available in 50 diverse shades for all skin tones.</p>
+                <button class="add-to-cart" data-name="Soft Matte Longwear Foundation" data-price="459">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/cosmetics6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Orgy Eyeshadow Palette</h1>
+                <p class="price">₹1599</p>
+                <p class="description">A 30-shade all-matte neutral eyeshadow palette, perfect for creating soft everyday looks or deep smoky glam. Highly pigmented and blendable formula.</p>
+                <button class="add-to-cart" data-name="Orgy Eyeshadow Palette" data-price="1599">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

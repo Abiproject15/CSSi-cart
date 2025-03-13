@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3>🏠 Home</h3></a>
+        <h2>Product Details</h2>
+        <a href="cart.html">🛒 Cart</a>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/hair accessory.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Flower Hair Clips</h1>
+                <p class="price">₹120</p>
+                <p class="description">The item is made from 100% linen fiber from the flax plant, with the possible exception of thread or fasteners.</p>
+                <button class="add-to-cart" data-name="Flower Hair Clips" data-price="120">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/hair accessory1.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Handembroidered sage Cap & Bow</h1>
+                <p class="price">₹270</p>
+                <p class="description">Made from high-quality materials that ensure comfort and longevity.Combines style with practicality, providing sun protection while elevating your outfits</p>
+                <button class="add-to-cart" data-name="Handembroidered sage Cap & Bow" data-price="270">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/hair accessory2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Embroidery Long Tail Bows </h1>
+                <p class="price">₹250</p>
+                <p class="description">Perfect for a casual day or any special event. Suitable for you to buy and embroider according to your own personality, or use right away</p>
+                <button class="add-to-cart" data-name="Embroidery Long Tail Bows" data-price="250">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/hair accessory3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Hand embroidered linen headband</h1>
+                <p class="price">₹230</p>
+                <p class="description">Plastic headband inside, outside is wrapped with linen fabric</p>
+                <button class="add-to-cart" data-name="Stylish Jacket" data-price="230">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/hair accessory4.1.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>White Hair Bows</h1>
+                <p class="price">₹235</p>
+                <p class="description">Made of high quality linen fabric,cool,easy to absorb sweat. Carefully sewn,many colors for you to choose.</p>
+                <button class="add-to-cart" data-name="Stylish Jacket" data-price="235">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-image">
+                <img src="Assests/hair accessory5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Chinese Style Hairpin</h1>
+                <p class="price">₹170</p>
+                <p class="description">This national style hair sticks has a delicate and elegant design,with a delicate and simple appearance,low-key and luxurious yet elegant.</p>
+                <button class="add-to-cart" data-name="Stylish Jacket" data-price="170">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

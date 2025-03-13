@@ -1,0 +1,140 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #f4f6f6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #6B31BB;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* Wishlist Icon */
+.wishlist-icon a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    position: relative;
+}
+
+#wishlist-count {
+    background: red;
+    color: white;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 3px 8px;
+    position: absolute;
+    top: -8px;
+    right: -10px;
+}
+
+
+
+.wishlist-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.wishlist-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+
+/* Wishlist Page Styling */
+.wishlist-container {
+    width: 60%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.wishlist-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#wishlist-items {
+    list-style: none;
+    padding: 0;
+}
+
+#wishlist-items li {
+    background: #f8f8f8;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-btn:hover {
+    background-color: darkred;
+}
+
+.clear-wishlist {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.clear-wishlist:hover {
+    background-color: #222;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .wishlist-container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    .wishlist-container {
+        width: 95%;
+    }
+
+    .wishlist-icon a {
+        font-size: 16px;
+    }
+
+    #wishlist-items li {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <link rel="stylesheet" href="order tracking.css">
+</head>
+<body>
+    <section class="tracking-section">
+        <div class="container">
+            <h1>Track Your Order</h1>
+            <p>Enter your order number to check the current status.</p>
+
+            <div class="tracking-form">
+                <input type="text" placeholder="Enter Order ID" id="orderId">
+                <button onclick="trackOrder()">Track Order</button>
+            </div>
+
+            <div id="trackingResult" class="tracking-status">
+                <h2>Order Status</h2>
+                <div class="progress-bar">
+                    <div class="step completed">Order Placed</div>
+                    <div class="step">Processing</div>
+                    <div class="step">Shipped</div>
+                    <div class="step">Out for Delivery</div>
+                    <div class="step">Delivered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function trackOrder() {
+            let orderId = document.getElementById("orderId").value;
+            if(orderId.trim() === "") {
+                alert("Please enter a valid Order ID.");
+                return;
+            }
+            document.getElementById("trackingResult").style.display = "block";
+        }
+    </script>
+</body>
+</html>

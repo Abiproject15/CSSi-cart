@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-btn"><h3>🏠 Home</h3></a>
+    </nav>
+    
+    <main>
+        <h1>Your Cart</h1>
+        <table id="cartTable" class="product-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cart items will be rendered here -->
+            </tbody>
+        </table>
+        <h2 id="grandTotal"></h2>
+        <button id="submitOrder">Proceed to Payment</button>
+    </main>
+
+
+    
+    <script>
+        function renderCart() {
+            let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+            const tbody = document.querySelector('#cartTable tbody');
+            tbody.innerHTML = "";
+            let grandTotal = 0;
+    
+            cart.forEach((product, index) => {
+                const total = product.price * product.quantity;
+                grandTotal += total;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.name}</td>
+                    <td>₹${product.price}</td>
+                    <td>${product.quantity}</td>
+                    <td>₹${total}</td>
+                    <td><button class="remove-item" data-index="${index}">Remove</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+    
+            document.getElementById('grandTotal').textContent = `Grand Total: ₹${grandTotal}`;
+    
+            addRemoveEventListeners(); // Call this function after rendering cart
+        }
+    
+        function addRemoveEventListeners() {
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    let index = this.getAttribute('data-index');
+                    cart.splice(index, 1); // Remove the product at the given index
+                    localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
+                    renderCart(); // Re-render the cart after removal
+                });
+            });
+        }
+    
+        document.getElementById('submitOrder').addEventListener('click', function() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+    
+            let grandTotal = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
+            localStorage.setItem('orderTotal', grandTotal);
+    
+            window.location.href = "billing.html"; // Redirect to billing page
+        });
+    
+        renderCart();
+    </script>
+    <script>
+        function renderCart() {
+            let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+            const tbody = document.querySelector('#cartTable tbody');
+            tbody.innerHTML = "";
+            let grandTotal = 0;
+
+            cart.forEach((product, index) => {
+                const total = product.price * product.quantity;
+                grandTotal += total;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.name}</td>
+                    <td>₹${product.price}</td>
+                    <td>${product.quantity}</td>
+                    <td>₹${total}</td>
+                    <td><button class="remove-item" data-index="${index}">Remove</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            document.getElementById('submitOrder').addEventListener('click', function() {
+    window.location.href = 'billing.html'; // Redirect to your billing page
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    // Calculate the grand total
+    let grandTotal = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
+
+    // Store order details in localStorage
+    localStorage.setItem('orderTotal', grandTotal);
+
+    // Redirect to payment page
+    window.location.href = "billing.html";
+});
+        }
+
+        function addRemoveEventListeners() {
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    let index = this.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                });
+            });
+        }
+
+        renderCart();
+
+        document.getElementById('submitOrder').addEventListener('click', function() {
+            localStorage.removeItem('cart');
+            renderCart();
+        });
+    </script>
+        
+</body>
+</html>

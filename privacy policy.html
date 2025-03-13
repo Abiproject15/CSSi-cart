@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #e5c641;
+            padding: 30px;
+            border-radius: 10px;
+            color: #000;
+        }
+        h1 {
+            color: #000;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            background: #000;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .tab-button {
+            flex: 1;
+            padding: 12px;
+            background: #000;
+            color: #e5c641;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .tab-button:hover, .tab-button.active {
+            background: #e5c641;
+            color: #000;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            color: #000;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Privacy Policy</h1>
+
+        <!-- Tab Buttons -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'tab1')">Introduction</button>
+            <button class="tab-button" onclick="openTab(event, 'tab2')">Data Collection</button>
+            <button class="tab-button" onclick="openTab(event, 'tab3')">How We Use Data</button>
+            <button class="tab-button" onclick="openTab(event, 'tab4')">Security</button>
+            <button class="tab-button" onclick="openTab(event, 'tab5')">Contact</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="tab1" class="tab-content active">
+            <h2>Introduction</h2>
+            <p>Welcome to our Privacy Policy page. Your privacy is our priority, and we are committed to protecting your personal data.</p>
+            <p>By using our website, you agree to the practices outlined in this policy.</p>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <h2>Data Collection</h2>
+            <p>We collect personal details such as name, email, and phone number for providing better services.</p>
+            <p>We also use cookies and tracking technologies to enhance your experience.</p>
+        </div>
+
+        <div id="tab3" class="tab-content">
+            <h2>How We Use Data</h2>
+            <p>Your data is used for:</p>
+            <ul>
+                <li>Order processing & customer support</li>
+                <li>Improving our products & services</li>
+                <li>Personalized recommendations</li>
+                <li>Marketing & promotional offers (if opted in)</li>
+            </ul>
+        </div>
+
+        <div id="tab4" class="tab-content">
+            <h2>Security Measures</h2>
+            <p>We take strong security measures to protect your personal data from unauthorized access and breaches.</p>
+            <p>Your payment details are encrypted and not stored on our servers.</p>
+        </div>
+
+        <div id="tab5" class="tab-content">
+            <h2>Contact Us</h2>
+            <p>If you have any concerns about your privacy, feel free to contact us:</p>
+            <p>Email: privacy@yourwebsite.com</p>
+            <p>Phone: +91 9884441467</p>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(event, tabId) {
+            var tabs = document.getElementsByClassName("tab-content");
+            var buttons = document.getElementsByClassName("tab-button");
+
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = "none";
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabId).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>

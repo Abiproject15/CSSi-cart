@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3> <img src="Assests/CS².ico" alt="nav__logo"></h3></a>
+        <div class="nav-links">
+            <a href="cart.html">🛒 Cart</a>
+            <a href="wishlist.html">❤️<span id="wishlist-count">0</span></a>
+        </div>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Business Casual" data-image="Assests/formalfit.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/formalfit.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Business Casual</h1>
+                <p class="price">₹2879</p>
+                <p class="description">A black blazer, white shirt, and blue jeans form a stylish smart casual outfit. It balances formality and comfort, perfect for versatile occasions.</p>
+                <button class="add-to-cart" data-name="Business Casual" data-price="2879">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Women green solid" data-image="Assests/formalfit2.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/formalfit2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Women green solid</h1>
+                <p class="price">₹540</p>
+                <p class="description">An olive green shirt with black trousers creates a sleek and stylish contrast, perfect for both casual and semi-formal occasions.</p>
+                <button class="add-to-cart" data-name="Women green solid" data-price="540">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Classic Casual Outfit" data-image="Assests/formalfit3.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/formalfit3.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Classic Casual Outfit</h1>
+                <p class="price">₹899</p>
+                <p class="description">Vero Moda Women Cotton%98 Elastane%2 Bootcut Solid White Shirt & Blue Jeans.</p>
+                <button class="add-to-cart" data-name="Classic Casual Outfit" data-price="899">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Smart Casual Outfit" data-image="Assests/formalfit4.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/formalfit4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Smart Casual Outfit</h1>
+                <p class="price">₹1599</p>
+                <p class="description">A navy blue shirt with white trousers offers a sharp, stylish contrast, ideal for a smart casual or semi-formal look.</p>
+                <button class="add-to-cart" data-name="Smart Casual Outfit" data-price="1599">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Soft Pink Grace Outfit" data-image="Assests/formalfit5.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/formalfit5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Soft Pink Grace Outfit</h1>
+                <p class="price">₹999</p>
+                <p class="description">Women regular fit Solid formal shirt & white polycotton trousers .</p>
+                <button class="add-to-cart" data-name="Soft Pink Grace Outfit" data-price="999">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Elegance in Motion Set" data-image="Assests/formalfit6.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/formalfit6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Elegance in Motion Set</h1>
+                <p class="price">₹879</p>
+                <p class="description">Women Self Design Turtle Neck Black Sweater & A Line Olive Skirt</p>
+                <button class="add-to-cart" data-name="Elegance in Motion Set" data-price="879">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        // Add to Wishlist Functionality
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let image = this.getAttribute('data-image');
+                let wishlist = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+
+                // Check if product is already in wishlist
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, image });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    alert("Product Added to Wishlist!");
+                } else {
+                    alert("Product is already in Wishlist!");
+                }
+
+                updateWishlistCount();
+            });
+        });
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+
+        document.addEventListener("DOMContentLoaded", updateWishlistCount);
+    </script>
+
+
+
+
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product added to cart!");
+            });
+        });
+    </script>
+</body>
+</html>

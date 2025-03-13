@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><h3> <img src="Assests/CS².ico" alt="nav__logo"></h3></a>
+        <div class="nav-links">
+            <a  class="cart" href="cart.html">🛒 Cart</a>
+            <a href="wishlist.html">❤️<span id="wishlist-count">0</span></a>
+        </div>
+    </nav>
+
+    <!-- Single Product Container Wrapping All Products -->
+    <section class="product-container">
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Satin Silk Saree" data-image="Assests/saree7.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree7.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Satin Silk Saree</h1>
+                <p class="price">₹980</p>
+                <p class="description">Silk Sarees Recommended For Function, Party, Sangeet, Mehendi, Wedding wear...</p>
+                <button class="add-to-cart" data-name="Satin Silk Saree" data-price="980">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Silk Saree" data-image="Assests/saree8.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree8.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Silk Saree</h1>
+                <p class="price">₹699</p>
+                <p class="description">Turquoise blue and gold-toned banarasi saree...</p>
+                <button class="add-to-cart" data-name="Silk Saree" data-price="699">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Woven Kanjivaram Pure Cotton" data-image="Assests/saree10.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree10.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Woven Kanjivaram Pure Cotton</h1>
+                <p class="price">₹950</p>
+                <p class="description">This Saree is Best Match for Traditional, Party, Festive Occasions...</p>
+                <button class="add-to-cart" data-name="Woven Kanjivaram Pure Cotton" data-price="950">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Self Design Tant Cotton Silk Saree" data-image="Assests/saree4.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree4.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Self Design Tant Cotton Silk Saree</h1>
+                <p class="price">₹678</p>
+                <p class="description">Ready to wear saree in pure Mangalagiri pattu cotton...</p>
+                <button class="add-to-cart" data-name="Self Design Tant Cotton Silk Saree" data-price="678">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Tissue Cotton Saree" data-image="Assests/saree5.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree5.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Tissue Cotton Saree</h1>
+                <p class="price">₹799</p>
+                <p class="description">Soft cotton mulmul saree in off-white shade handwoven by weavers of Bengal...</p>
+                <button class="add-to-cart" data-name="Tissue Cotton Saree" data-price="799">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <button class="add-to-wishlist" data-name="Zari Silk Cotton" data-image="Assests/saree6.jpg">❤️</button>
+            <div class="product-image">
+                <img src="Assests/saree6.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Zari Silk Cotton</h1>
+                <p class="price">₹990</p>
+                <p class="description">Blue and maroon banarasi saree with geometric woven design...</p>
+                <button class="add-to-cart" data-name="Zari Silk Cotton" data-price="990">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add to Wishlist Functionality
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let image = this.getAttribute('data-image');
+                let wishlist = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+
+                // Check if product is already in wishlist
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, image });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    alert("Product Added to Wishlist!");
+                } else {
+                    alert("Product is already in Wishlist!");
+                }
+
+                updateWishlistCount();
+            });
+        });
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+
+        document.addEventListener("DOMContentLoaded", updateWishlistCount);
+    </script>
+
+    <script>
+        // Add to Cart Functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let price = parseInt(this.getAttribute('data-price'));
+                let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+                
+                let existingProduct = cart.find(p => p.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert("Product Added to Cart!");
+                window.location.href = "cart.html";
+            });
+        });
+    </script>
+
+</body>
+</html>
