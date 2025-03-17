@@ -10,128 +10,68 @@
 <body>
     <div class="container">
         <h1>Confirm Your Payment</h1>
-
         <div class="payment-method">
             <h3>Select Payment Method</h3>
             <label>
                 <input type="radio" name="payment" value="cod" id="cod-option"> Cash on Delivery (COD)
             </label>
-            <label>
-                <input type="radio" name="payment" value="online" id="online-option"> Online Payment
-            </label>
         </div>
 
-        <!-- OTP Section (Hidden by Default) -->
+        <label>
+            <input type="checkbox" id="save-payment"> Save this payment method for future orders
+        </label>        
+
+        <!-- OTP Section -->
         <div class="input-group" id="otp-section" style="display: none;">
             <label for="otp">Enter OTP</label>
             <input type="text" id="otp" placeholder="Enter OTP">
             <button type="button" id="verify-otp">Verify OTP</button>
+            <button type="button" id="resend-otp">Resend OTP</button>
         </div>
 
-        <!-- Online Payment Section (Hidden by Default) -->
-        <div id="online-payment-section" style="display: none;">
-            <div class="first-row">
-                <div class="owner">
-                    <h3>Owner</h3>
-                    <div class="input-field">
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="cvv">
-                    <h3>CVV</h3>
-                    <div class="input-field">
-                        <input type="password">
-                    </div>
-                </div>
-            </div>
-            <div class="second-row">
-                <div class="card-number">
-                    <h3>Card Number</h3>
-                    <div class="input-field">
-                        <input type="number">
-                    </div>
-                </div>
-            </div>
-            <div class="third-row">
-                <h3>Expiration Date</h3>
-                <div class="selection">
-                    <div class="date">
-                        <select name="months" id="months">
-                            <option value="Jan">Jan</option>
-                            <option value="Feb">Feb</option>
-                            <option value="Mar">Mar</option>
-                            <option value="Apr">Apr</option>
-                            <option value="May">May</option>
-                            <option value="Jun">Jun</option>
-                            <option value="Jul">Jul</option>
-                            <option value="Aug">Aug</option>
-                            <option value="Sep">Sep</option>
-                            <option value="Oct">Oct</option>
-                            <option value="Nov">Nov</option>
-                            <option value="Dec">Dec</option>
-                        </select>
-                        <select name="years" id="years">
-                            <option value="2025">2025</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                        </select>
-                    </div>
-                    <div class="cards">
-                        <img src="Assests/mc.png" alt="">
-                        <img src="Assests/vi.png" alt="">
-                        <img src="Assests/pp.png" alt="">
-                    </div>
-                </div>    
-            </div>
+        <div class="discount-section">
+            <label for="discount-code">Apply Discount Code:</label>
+            <input type="text" id="discount-code" placeholder="Enter Code">
+            <button type="button" id="apply-discount">Apply</button>
         </div>
+        
 
         <a href="order placed.html" id="confirm-btn">Confirm</a>
     </div>
 
     <script>
         const codOption = document.getElementById("cod-option");
-        const onlineOption = document.getElementById("online-option");
         const otpSection = document.getElementById("otp-section");
-        const onlineSection = document.getElementById("online-payment-section");
         const confirmBtn = document.getElementById("confirm-btn");
-
+    
         // Ensure no payment option is selected by default
         codOption.checked = false;
-        onlineOption.checked = false;
-
+    
         // Show OTP section when COD is selected
         codOption.addEventListener("change", function() {
             if (this.checked) {
                 if (confirm("Are you sure you want to choose Cash on Delivery?")) {
                     otpSection.style.display = "block";
-                    onlineSection.style.display = "none";
                 } else {
                     this.checked = false;
                     otpSection.style.display = "none";
                 }
             }
         });
-
-        // Show Online Payment section when Online Payment is selected
-        onlineOption.addEventListener("change", function() {
-            if (this.checked) {
-                onlineSection.style.display = "block";
-                otpSection.style.display = "none";
-            }
-        });
-
+    
         // OTP Verification
         document.getElementById("verify-otp").addEventListener("click", function() {
             let otp = document.getElementById("otp").value;
-            if (otp === "1234") { // Replace with real OTP validation
+            const validOtps = ["1234", "5678", "9012", "2004", "2005", "2002"]; // List of valid OTPs
+    
+            if (validOtps.includes(otp)) {
                 alert("OTP Verified! You can confirm your order now.");
                 confirmBtn.dataset.otpVerified = "true"; // Mark OTP as verified
             } else {
                 alert("Invalid OTP! Please try again.");
             }
         });
-
+    
         // Prevent confirmation if OTP is not verified
         confirmBtn.addEventListener("click", function(event) {
             if (codOption.checked && confirmBtn.dataset.otpVerified !== "true") {
@@ -139,6 +79,24 @@
                 alert("Please verify OTP before proceeding.");
             }
         });
-    </script>
+    
+        // Discount Code Validation
+        document.getElementById("apply-discount").addEventListener("click", function() {
+            let code = document.getElementById("discount-code").value;
+            const validDiscounts = ["DISCOUNT10", "ABI2019", "DHARSH@24", "PAVI2023"]; // Valid discount codes
+    
+            if (validDiscounts.includes(code)) {
+                alert("Discount Applied! ₹100 off.");
+                document.getElementById("total-amount").textContent = 1100; // Update total
+            } else {
+                alert("Invalid Discount Code!");
+            }
+        });
+    
+        // Resend OTP
+        document.getElementById("resend-otp").addEventListener("click", function() {
+            alert("New OTP Sent!");
+        });
+    </script>   
 </body>
 </html>
