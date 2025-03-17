@@ -138,8 +138,8 @@ table.product-table th, table.product-table td {
 }
 
 table.product-table th {
-  background-color: #6B31BB;
-  color: #fff;
+  background-color: #e5c641;
+  color: black;
 }
 
 #grandTotal {
@@ -152,8 +152,8 @@ button {
   display: block;
   margin: 0 auto;
   padding: 0.75em 1.25em;
-  background-color:#6B31BB;
-  color: #fff;
+  background-color:#e5c641;
+  color: black;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -161,7 +161,7 @@ button {
 }
 
 button:hover {
-  background-color:#632daf;
+  background-color:#e5c641;
 }
 
 /* Responsive Styles */
