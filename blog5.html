@@ -8,14 +8,17 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html"><h3>🏠 Home</h3></a>
-        <h2>Product Details</h2>
-        <a href="cart.html">🛒 Cart</a>
+        <a href="index.html"><h3> <img src="Assests/CS².ico" alt="nav__logo"></h3></a>
+        <div class="nav-links">
+            <a class="cart" href="cart.html">🛒 Cart</a>
+            <a href="wishlist.html">❤️ <span id="wishlist-count">0</span></a>
+        </div>  
     </nav>
 
     <!-- Single Product Container Wrapping All Products -->
     <section class="product-container">
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Stoned Design Gold Clutch Bag" data-image="Assests/wallet.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet.jpg" alt="Product Image">
             </div>
@@ -28,6 +31,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Casual Maroon Clutch" data-image="Assests/wallet2.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet2.jpg" alt="Product Image">
             </div>
@@ -40,6 +44,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="White Women Sling Bag" data-image="Assests/wallet3.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet3.jpg" alt="Product Image">
             </div>
@@ -52,6 +57,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Women Sling Bag Clutch" data-image="Assests/wallet4.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet4.jpg" alt="Product Image">
             </div>
@@ -64,6 +70,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="ZOUK Printed Double Sided Sleek Wallet" data-image="Assests/wallet5.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet5.jpg" alt="Product Image">
             </div>
@@ -76,6 +83,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Women Multicolor Handbag - Mini" data-image="Assests/wallet6.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet6.jpg" alt="Product Image">
             </div>
@@ -90,6 +98,7 @@
 
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Multifunctional Buckle Wallet" data-image="Assests/wallet7.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet7.jpg" alt="Product Image">
             </div>
@@ -104,6 +113,7 @@
 
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Cute Small Wallets" data-image="Assests/wallet8.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet8.jpg" alt="Product Image">
             </div>
@@ -116,6 +126,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Leather Long Clutch Side Bag Wallet" data-image="Assests/wallet9.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet9.jpg" alt="Product Image">
             </div>
@@ -131,6 +142,7 @@
 
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Mini Wallet" data-image="Assests/wallet10.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/wallet10.jpg" alt="Product Image">
             </div>
@@ -142,6 +154,47 @@
             </div>
         </div>
      </section>
+
+
+
+
+
+     <script>
+        // Add to Wishlist Functionality
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let image = this.getAttribute('data-image');
+                let wishlist = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+
+                // Check if product is already in wishlist
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, image });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    alert("Product Added to Wishlist!");
+                } else {
+                    alert("Product is already in Wishlist!");
+                }
+
+                updateWishlistCount();
+            });
+        });
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+
+        document.addEventListener("DOMContentLoaded", updateWishlistCount);
+    </script>
+
+
+
+
+
+
+
+
 
     <script>
         document.querySelectorAll('.add-to-cart').forEach(button => {

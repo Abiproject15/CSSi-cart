@@ -8,14 +8,17 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html"><h3>🏠 Home</h3></a>
-        <h2>Product Details</h2>
-        <a href="cart.html">🛒 Cart</a>
+        <a href="index.html"><h3> <img src="Assests/CS².ico" alt="nav__logo"></h3></a>
+        <div class="nav-links">
+            <a class="cart" href="cart.html">🛒 Cart</a>
+            <a href="wishlist.html">❤️ <span id="wishlist-count">0</span></a>
+        </div>  
     </nav>
 
     <!-- Single Product Container Wrapping All Products -->
     <section class="product-container">
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Chevron Pattern Tote Bag with Pouch" data-image="Assests/bag.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/bag.jpg" alt="Product Image">
             </div>
@@ -29,6 +32,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Tote bag combo" data-image="Assests/bag2.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/bag2.jpg" alt="Product Image">
             </div>
@@ -42,6 +46,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Stylish Multicolor office college Bags" data-image="Assests/bag3.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/bag3.jpg" alt="Product Image">
             </div>
@@ -55,6 +60,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Inkmilan Red Charm Tote Bag" data-image="Assests/bag4.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/bag4.jpg" alt="Product Image">
             </div>
@@ -68,6 +74,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Blue Shoulder Bag" data-image="Assests/bag5.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/bag5.jpg" alt="Product Image">
             </div>
@@ -81,6 +88,7 @@
         </div>
 
         <div class="product-item">
+            <button class="add-to-wishlist" data-name="Mud Pie Rose Gold Glitter bag" data-image="Assests/bag6.jpg">❤️</button>
             <div class="product-image">
                 <img src="Assests/bag6.jpg" alt="Product Image">
             </div>
@@ -93,6 +101,45 @@
             </div>
         </div>
     </section>
+
+
+
+
+    <script>
+        // Add to Wishlist Functionality
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                let name = this.getAttribute('data-name');
+                let image = this.getAttribute('data-image');
+                let wishlist = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+
+                // Check if product is already in wishlist
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, image });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    alert("Product Added to Wishlist!");
+                } else {
+                    alert("Product is already in Wishlist!");
+                }
+
+                updateWishlistCount();
+            });
+        });
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            document.getElementById("wishlist-count").textContent = wishlist.length;
+        }
+
+        document.addEventListener("DOMContentLoaded", updateWishlistCount);
+    </script>
+
+
+
+
+
+
+
 
     <script>
         document.querySelectorAll('.add-to-cart').forEach(button => {
